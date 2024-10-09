@@ -1,0 +1,12 @@
+POST http://localhost:8080/parts
+content-type: application/json
+
+{
+   "part_number": 7548932073,
+   "brand": "Samsung",
+   "name": "Server Lite",
+   "category": "Network Gear",
+   "on_hand": 10,
+   "reorder_amount": 5,
+   "package_quantity": 1
+}
