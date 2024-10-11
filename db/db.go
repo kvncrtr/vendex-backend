@@ -13,7 +13,7 @@ var DB *sql.DB
 func InitDB() {
 	var err error
 
-	connStr := os.Getenv("CONNECTING_STRING")
+	connStr := os.Getenv("DATABASE_URL")
 	if connStr == "" {
 		log.Fatal("DB_CONN_STRING not set in .env")
 	}
