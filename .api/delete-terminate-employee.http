@@ -1,7 +1,0 @@
-DELETE http://localhost:8080/employee/16
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGFzcyI6IkEiLCJlbXBsb3llZV9pZCI6MTUsImV4cGlyZWQiOjE3MjA0MDc5Njh9.s_w2X9CNIILjVGjdY5BeN9V9f4tRPF1crlE0SUrJ6HU
-
-{
-   "id": 16
-}
