@@ -7,17 +7,11 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/joho/godotenv"
 )
 
 var secretKey []byte
 
 func init() {
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Println("Error loading .env file")
-	}
-
 	secretKeyEnv := os.Getenv("SECRET_KEY")
 	if secretKeyEnv == "" {
 		fmt.Println("SECRET_KEY not set in .env")

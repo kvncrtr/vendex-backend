@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -13,11 +12,6 @@ var DB *sql.DB
 
 func InitDB() {
 	var err error
-
-	err = godotenv.Load()
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
 
 	connStr := os.Getenv("CONNECTING_STRING")
 	if connStr == "" {
