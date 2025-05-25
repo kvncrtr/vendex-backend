@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/kvncrtr/vendex/db"
 	"github.com/kvncrtr/vendex/routes"
@@ -18,8 +20,13 @@ func main() {
 	// Execute Routes
 	routes.RegisterRoutes(server)
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080" // fallback for local dev
+	}
+
 	// Listen and serve
-	server.Run(":8080")
+	server.Run(":" + port)
 }
 
 /*

@@ -15,7 +15,7 @@ func InitDB() {
 
 	connStr := os.Getenv("DATABASE_URL")
 	if connStr == "" {
-		log.Fatal("DB_CONN_STRING not set in .env")
+		log.Fatal("DATABASE_URL not set in .env")
 	}
 
 	DB, err = sql.Open("postgres", connStr)
