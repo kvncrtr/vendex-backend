@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"log"
 	"net/http"
 	"strconv"
 
@@ -32,14 +33,15 @@ func LoginEmployee(c *gin.Context) {
 	var tempEmployee models.TempEmployeeAuth
 
 	err := c.ShouldBindJSON(&tempEmployee)
+	log.Printf("Login request received: %+v", tempEmployee)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request." })
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request."})
 		return
 	}
 
 	employeeID, err := strconv.ParseInt(tempEmployee.Employee_ID, 10, 64)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse int in request." })
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse int in request."})
 		return
 	}
 
@@ -50,13 +52,13 @@ func LoginEmployee(c *gin.Context) {
 
 	class, err := employee.ValidateCredentials()
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"message": "Employee ID/password invalid." })
+		c.JSON(http.StatusUnauthorized, gin.H{"message": "Employee ID/password invalid."})
 		return
 	}
 
 	token, err := utils.GenerateToken(employee.Employee_ID, class)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "Could not authenticate employee. Token failed." })
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Could not authenticate employee. Token failed."})
 		return
 	}
 
@@ -106,7 +108,7 @@ func updateEmployee(c *gin.Context) {
 
 	err = employee.UpdateEmployee()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"message": "Couldn't update profile! " })
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Couldn't update profile! "})
 		return
 	}
 
