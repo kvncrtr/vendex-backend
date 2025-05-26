@@ -50,7 +50,7 @@ func LoginEmployee(c *gin.Context) {
 
 	class, err := employee.ValidateCredentials()
 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"message": "Employee ID/password invalid."})
+		c.JSON(http.StatusUnauthorized, gin.H{"message": err.Error()})
 		return
 	}
 
