@@ -166,11 +166,8 @@ func (employee *EmployeeAuth) ValidateCredentials() (string, error) {
 		if err == sql.ErrNoRows {
 			return "", errors.New("invalid credentials")
 		}
-		return "", errors.New("error fetching employee info")
+		return "", errors.New(err.Error())
 	}
-
-	log.Printf("🔐 Input password: %s", employee.Password)
-	log.Printf("🔐 Hashed password from DB: %s", retrievedPassword)
 
 	passwordIsValid := utils.CheckPasswordHash(employee.Password, retrievedPassword)
 
