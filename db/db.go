@@ -25,7 +25,7 @@ func InitDB() {
 
 	err = DB.Ping()
 	if err != nil {
-		panic("Could not ping database.")
+		log.Fatalf("Could not ping database %v", err)
 	}
 
 	log.Println("Successfully connected to the database!")

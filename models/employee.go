@@ -3,6 +3,7 @@ package models
 import (
 	"database/sql"
 	"errors"
+	"log"
 	"time"
 
 	"github.com/kvncrtr/vendex/db"
@@ -34,7 +35,7 @@ type EmployeeAuth struct {
 }
 
 type TempEmployeeAuth struct {
-	Employee_ID string  `json:"employee_id" binding:"required"`
+	Employee_ID string `json:"employee_id" binding:"required"`
 	Password    string `json:"password" binding:"required"`
 }
 
@@ -167,6 +168,9 @@ func (employee *EmployeeAuth) ValidateCredentials() (string, error) {
 		}
 		return "", errors.New("error fetching employee info")
 	}
+
+	log.Printf("🔐 Input password: %s", employee.Password)
+	log.Printf("🔐 Hashed password from DB: %s", retrievedPassword)
 
 	passwordIsValid := utils.CheckPasswordHash(employee.Password, retrievedPassword)
 

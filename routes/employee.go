@@ -33,7 +33,6 @@ func LoginEmployee(c *gin.Context) {
 	var tempEmployee models.TempEmployeeAuth
 
 	err := c.ShouldBindJSON(&tempEmployee)
-	log.Printf("Login request received: %+v", tempEmployee)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse request."})
 		return
